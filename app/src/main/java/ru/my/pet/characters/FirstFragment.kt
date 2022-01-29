@@ -1,18 +1,18 @@
-package ru.my.pet.screens.viewpager.first
+package ru.my.pet.characters
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.lifecycle.Observer
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_first.view.*
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import ru.my.pet.R
-import ru.my.pet.repository.Repository
 
 class FirstFragment : Fragment() {
     lateinit var recyclerView: RecyclerView
@@ -24,21 +24,18 @@ class FirstFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_first, container, false)
 
+        val viewModel by viewModels<CharactersViewModel>()
         recyclerView = view.rv_first
         adapter = FirstAdapter()
         recyclerView.adapter = adapter
 
-        val repository = Repository()
-        val viewModelFactory = FirstViewModelFactory(repository)
-        val viewModel = ViewModelProvider(this, viewModelFactory).get(FirstViewModel::class.java)
-        viewModel.getCharacters()
-        viewModel.characterList.observe(viewLifecycleOwner, Observer { response ->
-            if (response == null){
-                Toast.makeText(context, "Проблема с сетью", Toast.LENGTH_SHORT).show()
-            }else{
-                adapter.setList(response)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.flow.collectLatest { pagingData ->
+                adapter.submitData(pagingData)
             }
-        })
+        }
         return view
     }
+
+
 }

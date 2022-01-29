@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="ru.my.pet.screens.splash.SplashFragment"
+        android:name="ru.my.pet.splashScreen.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" />
     <fragment
         android:id="@+id/viewPagerFragment"
-        android:name="ru.my.pet.screens.viewpager.ViewPagerFragment"
+        android:name="ru.my.pet.viewpager.ViewPagerFragment"
         android:label="fragment_view_pager"
         tools:layout="@layout/fragment_view_pager" />
     <fragment
         android:id="@+id/secondFragment2"
-        android:name="ru.my.pet.screens.viewpager.second.SecondFragment"
+        android:name="ru.my.pet.viewpager.second.SecondFragment"
         android:label="fragment_second"
         tools:layout="@layout/fragment_second" />
     <fragment
         android:id="@+id/firstFragment"
-        android:name="ru.my.pet.screens.viewpager.first.FirstFragment"
+        android:name="ru.my.pet.characters.FirstFragment"
         android:label="fragment_first"
         tools:layout="@layout/fragment_first" />
 </navigation>

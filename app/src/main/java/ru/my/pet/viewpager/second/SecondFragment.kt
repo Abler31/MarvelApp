@@ -1,4 +1,4 @@
-package ru.my.pet.screens.viewpager.second
+package ru.my.pet.viewpager.second
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

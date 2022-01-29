@@ -1,9 +1,9 @@
-package ru.my.pet.screens.viewpager
+package ru.my.pet.viewpager
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import ru.my.pet.screens.viewpager.first.FirstFragment
-import ru.my.pet.screens.viewpager.second.SecondFragment
+import ru.my.pet.characters.FirstFragment
+import ru.my.pet.viewpager.second.SecondFragment
 
 class PagerAdapter(fragmentActivity: ViewPagerFragment): FragmentStateAdapter(fragmentActivity){
     override fun getItemCount(): Int {

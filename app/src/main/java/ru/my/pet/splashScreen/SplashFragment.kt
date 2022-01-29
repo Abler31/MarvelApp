@@ -1,4 +1,4 @@
-package ru.my.pet.screens.splash
+package ru.my.pet.splashScreen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
