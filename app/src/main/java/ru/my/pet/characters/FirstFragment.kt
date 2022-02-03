@@ -16,7 +16,7 @@ import ru.my.pet.R
 
 class FirstFragment : Fragment() {
     lateinit var recyclerView: RecyclerView
-    lateinit var adapter: FirstAdapter
+    val adapter by lazy { FirstAdapter() }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,8 +26,11 @@ class FirstFragment : Fragment() {
 
         val viewModel by viewModels<CharactersViewModel>()
         recyclerView = view.rv_first
-        adapter = FirstAdapter()
-        recyclerView.adapter = adapter
+
+        recyclerView.adapter = adapter.withLoadStateHeaderAndFooter(
+            header = CharactersLoaderStatesAdapter(adapter),
+            footer = CharactersLoaderStatesAdapter(adapter)
+        )
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.flow.collectLatest { pagingData ->
