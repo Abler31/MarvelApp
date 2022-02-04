@@ -24,6 +24,7 @@ class FirstAdapter : PagingDataAdapter<Character, FirstAdapter.CharacterViewHold
 
             Glide.with(characterThumbnail)
                 .load("${data?.thumbnail?.path}/portrait_medium.jpg")
+                .placeholder(R.drawable.placeholder_character)
                 .into(characterThumbnail)
         }
     }
