@@ -42,7 +42,7 @@ class FirstFragment : Fragment() {
 
         adapter.addLoadStateListener { state ->
             recyclerView.isVisible = state.refresh is LoadState.NotLoading
-            view.progress_bar_first.isVisible = state.refresh is LoadState.Loading
+            view.shimmer_first.isVisible = state.refresh is LoadState.Loading
             view.button_retry_first.isVisible = state.refresh is LoadState.Error
         }
 
