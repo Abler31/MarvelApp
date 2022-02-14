@@ -19,4 +19,18 @@ interface AppService {
         offset : String
     ) : Response<CharactersDTO>
 
+    @GET("/v1/public/characters")
+    suspend fun getCharactersByName(
+            @Query("ts")
+            ts : String = Constants.timeSpan,
+            @Query("apikey")
+            apiKey : String = Constants.PUBLIC_KEY,
+            @Query("hash")
+            hash : String = Constants.hash(),
+            @Query("offset")
+            offset : String,
+            @Query("nameStartsWith")
+            name : String
+    ) : Response<CharactersDTO>
+
 }

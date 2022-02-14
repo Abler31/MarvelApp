@@ -10,6 +10,10 @@ class ApiClient(private val appService: AppService) {
         return safeApiCall { appService.getCharacters(offset = offset.toString()) }
     }
 
+    suspend fun getCharactersByName(offset: Int, name : String) : SimpleResponse<CharactersDTO>{
+        return safeApiCall { appService.getCharactersByName(offset = offset.toString(), name = name)}
+    }
+
     private inline fun <T> safeApiCall(apiCall: () -> Response<T>): SimpleResponse<T> {
         return try {
             SimpleResponse.success(apiCall.invoke())

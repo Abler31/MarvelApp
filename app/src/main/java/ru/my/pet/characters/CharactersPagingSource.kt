@@ -2,19 +2,30 @@ package ru.my.pet.characters
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import ru.my.pet.model.CharactersDTO
 import ru.my.pet.network.NetworkLayer
 import ru.my.pet.model.Result
+import ru.my.pet.network.SimpleResponse
 import ru.my.pet.utils.CharactersMapper
 import ru.my.pet.utils.Constants
 
 class CharactersPagingSource(
-    private val repository : CharactersRepository
+    private val repository : CharactersRepository,
+    private val userSearch : String
 ) : PagingSource<Int, Character>() {
 
+//При пустом поисковом запросе выводим всех персонажей,
+// Либо ищем персонажей начинающихся с букв в поисковом запросе
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Character> {
         val offset = params.key ?: 0
         val pageSize = params.loadSize.coerceAtMost(Constants.limit.toInt())
-        val charactersRequest = NetworkLayer.apiClient.getCharacters(offset)
+        val charactersRequest : SimpleResponse<CharactersDTO>
+        if (userSearch.isEmpty()){
+            charactersRequest = NetworkLayer.apiClient.getCharacters(offset)
+        }else{
+            charactersRequest = NetworkLayer.apiClient.getCharactersByName(offset, userSearch)
+        }
+
         charactersRequest.exception?.let {
             return LoadResult.Error(it)
         }
