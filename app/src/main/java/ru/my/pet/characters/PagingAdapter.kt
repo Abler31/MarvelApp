@@ -10,9 +10,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.my.pet.R
-import ru.my.pet.model.Result
 
-class FirstAdapter : PagingDataAdapter<Character, FirstAdapter.CharacterViewHolder>(
+class PagingAdapter : PagingDataAdapter<Character, PagingAdapter.CharacterViewHolder>(
     CharacterDiffCallback
 ) {
 

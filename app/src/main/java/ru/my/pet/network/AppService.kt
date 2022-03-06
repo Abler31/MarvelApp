@@ -16,7 +16,9 @@ interface AppService {
         @Query("hash")
         hash : String = Constants.hash(),
         @Query("offset")
-        offset : String
+        offset : String,
+        @Query("orderBy")
+        orderBy : String
     ) : Response<CharactersDTO>
 
     @GET("/v1/public/characters")
@@ -30,7 +32,9 @@ interface AppService {
             @Query("offset")
             offset : String,
             @Query("nameStartsWith")
-            name : String
+            name : String,
+            @Query("orderBy")
+            orderBy : String
     ) : Response<CharactersDTO>
 
 }

@@ -2,9 +2,6 @@ package ru.my.pet.characters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
@@ -13,7 +10,7 @@ import ru.my.pet.R
 import ru.my.pet.databinding.LoadStateViewItemBinding
 
 class CharactersLoaderStatesAdapter(
-    private val adapter: FirstAdapter
+    private val adapter: PagingAdapter
 ) : LoadStateAdapter<CharactersLoaderStatesAdapter.ItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): ItemViewHolder {

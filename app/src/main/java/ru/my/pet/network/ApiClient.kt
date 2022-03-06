@@ -6,12 +6,12 @@ import java.lang.Exception
 
 class ApiClient(private val appService: AppService) {
 
-    suspend fun getCharacters(offset : Int): SimpleResponse<CharactersDTO>{
-        return safeApiCall { appService.getCharacters(offset = offset.toString()) }
+    suspend fun getCharacters(offset : Int, orderBy : String): SimpleResponse<CharactersDTO>{
+        return safeApiCall { appService.getCharacters(offset = offset.toString(), orderBy = orderBy) }
     }
 
-    suspend fun getCharactersByName(offset: Int, name : String) : SimpleResponse<CharactersDTO>{
-        return safeApiCall { appService.getCharactersByName(offset = offset.toString(), name = name)}
+    suspend fun getCharactersByName(offset: Int, name : String, orderBy : String) : SimpleResponse<CharactersDTO>{
+        return safeApiCall { appService.getCharactersByName(offset = offset.toString(), name = name, orderBy = orderBy)}
     }
 
     private inline fun <T> safeApiCall(apiCall: () -> Response<T>): SimpleResponse<T> {

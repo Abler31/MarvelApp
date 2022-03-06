@@ -11,7 +11,7 @@ import ru.my.pet.utils.Constants
 
 class CharactersPagingSource(
     private val repository : CharactersRepository,
-    private val userSearch : String
+    private val userSearch : String,
 ) : PagingSource<Int, Character>() {
 
 //При пустом поисковом запросе выводим всех персонажей,
@@ -21,9 +21,9 @@ class CharactersPagingSource(
         val pageSize = params.loadSize.coerceAtMost(Constants.limit.toInt())
         val charactersRequest : SimpleResponse<CharactersDTO>
         if (userSearch.isEmpty()){
-            charactersRequest = NetworkLayer.apiClient.getCharacters(offset)
+            charactersRequest = NetworkLayer.apiClient.getCharacters(offset, "name")
         }else{
-            charactersRequest = NetworkLayer.apiClient.getCharactersByName(offset, userSearch)
+            charactersRequest = NetworkLayer.apiClient.getCharactersByName(offset, userSearch, "name")
         }
 
         charactersRequest.exception?.let {
