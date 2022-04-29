@@ -14,7 +14,11 @@
         android:id="@+id/viewPagerFragment"
         android:name="ru.my.pet.viewpager.ViewPagerFragment"
         android:label="fragment_view_pager"
-        tools:layout="@layout/fragment_view_pager" />
+        tools:layout="@layout/fragment_view_pager" >
+        <action
+            android:id="@+id/action_viewPagerFragment_to_detailedCharacter"
+            app:destination="@id/detailedCharacter" />
+    </fragment>
     <fragment
         android:id="@+id/secondFragment2"
         android:name="ru.my.pet.viewpager.second.SecondFragment"
@@ -25,4 +29,9 @@
         android:name="ru.my.pet.characters.FirstFragment"
         android:label="fragment_first"
         tools:layout="@layout/fragment_first" />
+    <fragment
+        android:id="@+id/detailedCharacter"
+        android:name="ru.my.pet.DetailedCharacter"
+        android:label="fragment_detailed_character"
+        tools:layout="@layout/fragment_detailed_character" />
 </navigation>

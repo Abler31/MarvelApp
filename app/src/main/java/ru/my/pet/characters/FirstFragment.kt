@@ -10,10 +10,12 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -45,6 +47,7 @@ class FirstFragment : Fragment() {
         recyclerView = view.rv_characters
 
         //обработка состояния при загрузке следующей части списка
+
         recyclerView.adapter = adapter.withLoadStateHeaderAndFooter(
             header = CharactersLoaderStatesAdapter(adapter),
             footer = CharactersLoaderStatesAdapter(adapter)
@@ -55,6 +58,15 @@ class FirstFragment : Fragment() {
                 adapter.submitData(pagingData)
             }
         }
+
+        //обработка нажатия на элемент списка
+        adapter.setOnItemClickListener(object: PagingAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+
+                findNavController().navigate(R.id.action_viewPagerFragment_to_detailedCharacter)
+
+            }
+        })
 
         //реагирование на состояние изначальной загрузки списка появлением необходимых элементов
         adapter.addLoadStateListener { state ->

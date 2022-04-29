@@ -15,16 +15,35 @@ class PagingAdapter : PagingDataAdapter<Character, PagingAdapter.CharacterViewHo
     CharacterDiffCallback
 ) {
 
-    class CharacterViewHolder(view: View): RecyclerView.ViewHolder(view){
+    private lateinit var mListener : onItemClickListener
+
+    interface onItemClickListener{
+
+        fun onItemClick(position: Int)
+
+    }
+
+    fun setOnItemClickListener(listener: onItemClickListener){
+        mListener = listener
+    }
+
+    class CharacterViewHolder(view: View, listener: onItemClickListener): RecyclerView.ViewHolder(view){
         val characterName : TextView = view.findViewById(R.id.tv_name)
         val characterThumbnail : ImageView = view.findViewById(R.id.iv_thumbnail)
         fun bind(data : Character?){
             characterName.text = data?.name
-
             Glide.with(characterThumbnail)
                 .load("${data?.thumbnail?.path}/portrait_medium.jpg")
                 .placeholder(R.drawable.placeholder_character)
                 .into(characterThumbnail)
+        }
+
+        init {
+            view.setOnClickListener {
+
+                listener.onItemClick(bindingAdapterPosition)
+
+            }
         }
     }
 
@@ -44,7 +63,6 @@ class PagingAdapter : PagingDataAdapter<Character, PagingAdapter.CharacterViewHo
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_fragment_first, parent, false)
-        return CharacterViewHolder(view)
+        return CharacterViewHolder(view, mListener)
     }
-
 }
