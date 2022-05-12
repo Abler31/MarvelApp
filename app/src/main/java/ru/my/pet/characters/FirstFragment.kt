@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.fragment_first.view.*
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.my.pet.R
+import ru.my.pet.viewpager.ViewPagerFragmentDirections
 
 class FirstFragment : Fragment() {
     lateinit var recyclerView: RecyclerView
@@ -61,9 +62,14 @@ class FirstFragment : Fragment() {
 
         //обработка нажатия на элемент списка
         adapter.setOnItemClickListener(object: PagingAdapter.onItemClickListener{
-            override fun onItemClick(position: Int) {
+            override fun onItemClick(id: Int?) {
 
-                findNavController().navigate(R.id.action_viewPagerFragment_to_detailedCharacter)
+                if (id != null) {
+                    val directions = ViewPagerFragmentDirections.actionViewPagerFragmentToDetailedCharacter(id)
+                    findNavController().navigate(directions)
+                } else {
+                    Toast.makeText(context, "Ошибка", Toast.LENGTH_SHORT).show()
+                }
 
             }
         })

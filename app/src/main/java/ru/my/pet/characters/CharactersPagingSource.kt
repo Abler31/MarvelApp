@@ -21,9 +21,9 @@ class CharactersPagingSource(
         val pageSize = params.loadSize.coerceAtMost(Constants.limit.toInt())
         val charactersRequest : SimpleResponse<CharactersDTO>
         if (userSearch.isEmpty()){
-            charactersRequest = NetworkLayer.apiClient.getCharacters(offset, "name")
+            charactersRequest = repository.getCharacters(offset, "name")
         }else{
-            charactersRequest = NetworkLayer.apiClient.getCharactersByName(offset, userSearch, "name")
+            charactersRequest = repository.getCharactersByName(offset, userSearch, "name")
         }
 
         charactersRequest.exception?.let {

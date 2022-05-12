@@ -19,7 +19,7 @@ class PagingAdapter : PagingDataAdapter<Character, PagingAdapter.CharacterViewHo
 
     interface onItemClickListener{
 
-        fun onItemClick(position: Int)
+        fun onItemClick(id: Int?)
 
     }
 
@@ -30,18 +30,21 @@ class PagingAdapter : PagingDataAdapter<Character, PagingAdapter.CharacterViewHo
     class CharacterViewHolder(view: View, listener: onItemClickListener): RecyclerView.ViewHolder(view){
         val characterName : TextView = view.findViewById(R.id.tv_name)
         val characterThumbnail : ImageView = view.findViewById(R.id.iv_thumbnail)
+        //id персонажа для CharacterDetailFragment
+        var id : Int? = null
         fun bind(data : Character?){
             characterName.text = data?.name
             Glide.with(characterThumbnail)
                 .load("${data?.thumbnail?.path}/portrait_medium.jpg")
                 .placeholder(R.drawable.placeholder_character)
                 .into(characterThumbnail)
+            id = data?.id
         }
 
         init {
             view.setOnClickListener {
 
-                listener.onItemClick(bindingAdapterPosition)
+                listener.onItemClick(id)
 
             }
         }

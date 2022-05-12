@@ -5,6 +5,11 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import ru.my.pet.model.CharactersDTO
 
 class CharactersViewModel : ViewModel() {
     private val repository = CharactersRepository()
@@ -30,4 +35,11 @@ class CharactersViewModel : ViewModel() {
         currentUserSearch = userSearch
         pagingSource?.invalidate()
     }
+
+    fun getCharacterById(characterId : Int) {
+        viewModelScope.launch {
+            repository.getCharacterById(characterId)
+        }
+    }
+
 }

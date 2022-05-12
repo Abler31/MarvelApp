@@ -17,7 +17,9 @@
         tools:layout="@layout/fragment_view_pager" >
         <action
             android:id="@+id/action_viewPagerFragment_to_detailedCharacter"
-            app:destination="@id/detailedCharacter" />
+            app:destination="@id/detailedCharacter">
+        </action>
+
     </fragment>
     <fragment
         android:id="@+id/secondFragment2"
@@ -31,7 +33,11 @@
         tools:layout="@layout/fragment_first" />
     <fragment
         android:id="@+id/detailedCharacter"
-        android:name="ru.my.pet.DetailedCharacter"
+        android:name="ru.my.pet.characters.detail.CharacterDetailFragment"
         android:label="fragment_detailed_character"
-        tools:layout="@layout/fragment_detailed_character" />
+        tools:layout="@layout/fragment_detailed_character" >
+        <argument
+            android:name="characterId"
+            app:argType="integer"/>
+    </fragment>
 </navigation>

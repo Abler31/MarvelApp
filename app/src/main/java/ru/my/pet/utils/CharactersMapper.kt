@@ -8,7 +8,8 @@ object CharactersMapper{
     fun buildFrom(result : Result): Character{
         return Character(
             name = result.name,
-            thumbnail = result.thumbnail
+            thumbnail = result.thumbnail,
+            id = result.id
         )
     }
 }

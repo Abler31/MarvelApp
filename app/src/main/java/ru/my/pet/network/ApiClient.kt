@@ -14,6 +14,14 @@ class ApiClient(private val appService: AppService) {
         return safeApiCall { appService.getCharactersByName(offset = offset.toString(), name = name, orderBy = orderBy)}
     }
 
+    suspend fun getCharacterByName(offset: Int, name : String, orderBy : String) : SimpleResponse<CharactersDTO>{
+        return safeApiCall { appService.getCharactersByName(offset = offset.toString(), name = name, orderBy = orderBy)}
+    }
+
+    suspend fun getCharacterById(characterId : Int) : SimpleResponse<CharactersDTO>{
+        return safeApiCall { appService.getCharacterById(characterId = characterId)}
+    }
+
     private inline fun <T> safeApiCall(apiCall: () -> Response<T>): SimpleResponse<T> {
         return try {
             SimpleResponse.success(apiCall.invoke())
