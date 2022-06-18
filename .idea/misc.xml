@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/project/Pet/app/src/main/res/font/marvel_font.xml" value="0.2851851851851852" />
         <entry key="..\:/project/Pet/app/src/main/res/layout/fragment_detailed_character.xml" value="0.18645833333333334" />
+        <entry key="..\:/project/Pet/app/src/main/res/layout/fragment_splash.xml" value="0.33" />
         <entry key="..\:/project/Pet/app/src/main/res/layout/item_fragment_first.xml" value="0.17831813576494426" />
       </map>
     </option>
