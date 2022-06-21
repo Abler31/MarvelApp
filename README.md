@@ -8,4 +8,5 @@
 - Coroutines
 - ViewModel
 - Navigation
+- Paging library
 - Glide
