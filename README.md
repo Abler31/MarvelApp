@@ -10,3 +10,5 @@
 - Navigation
 - Paging library
 - Glide
+
+<img src="https://github.com/Abler31/MarvelApp/blob/master/screen.gif" width="240" height="426"/>
